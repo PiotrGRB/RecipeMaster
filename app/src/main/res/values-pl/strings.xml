@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="defaultName">Gość</string>
+    <string name="facebook">Zaloguj przez Facebooka</string>
+    <string name="fb_loggedOut">Wylogowano</string>
+    <string name="images">Zdjęcia:</string>
+    <string name="ingredients">Składniki:</string>
+    <string name="negative">Nie</string>
+    <string name="positive">Tak</string>
+    <string name="preparing">Przygotowanie:</string>
+    <string name="recipe">Pobierz przepis</string>
+    <string name="saveImageQuestion">Czy na pewno chcesz zapisać ten obrazek?</string>
+    <string name="saveImageTitle">Zapisz obraz</string>
+    <string name="succes_saveImage">Zapisano do galerii!</string>
+    <string name="tv_loggedAs">Zalogowano jako</string>
+    <string name="permissiondenied_toast">Nie można zapisać zdjęć, jeśli nie wyrazisz zgody.</string>
+</resources>

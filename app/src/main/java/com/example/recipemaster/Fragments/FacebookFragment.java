@@ -33,6 +33,7 @@ import java.util.Arrays;
 public class FacebookFragment extends Fragment {
     private static final String TAG = "FacebookFragment";
 
+    private AsyncTask loadImageTask;
     private TextView tv_email;
     private TextView tv_name;
     private ImageView iv_picture;
@@ -49,6 +50,7 @@ public class FacebookFragment extends Fragment {
         loginButton = view.findViewById(R.id.login_button);
         loginButton.setPermissions(Arrays.asList("public_profile", "email"));
 
+        loadImageTask = new DownloadImageTask(iv_picture);
        // LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         if (accessToken != null) {
@@ -64,7 +66,7 @@ public class FacebookFragment extends Fragment {
     public void update(String name, String email, String url){
         tv_email.setText(email);
         tv_name.setText(name);
-        new DownloadImageTask(iv_picture).execute(url);
+        loadImageTask.execute(url);
         saveToSharedPreferences(name, url);
     }
 
@@ -72,6 +74,9 @@ public class FacebookFragment extends Fragment {
         tv_email.setText("");
         tv_name.setText(getString(R.string.fb_loggedOut));
         iv_picture.setImageResource(android.R.color.transparent);
+        //cancel if still running
+        loadImageTask.cancel(true);
+
         removeFromSharedPreferences();
     }
 

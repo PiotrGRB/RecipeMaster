@@ -1,14 +1,19 @@
 package com.example.recipemaster;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.recipemaster.Fragments.FacebookFragment;
 import com.example.recipemaster.Fragments.MainFragment;
@@ -38,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // Create global configuration and initialize ImageLoader with this config
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
 			.build();
         ImageLoader.getInstance().init(config);
 
+        setupPermissions();
         setupToolbar();
         //setup adapter for fragments
         mFragmentPagerAdapter = new SelectFragmentStatePagerAdapter(getSupportFragmentManager());
@@ -144,5 +149,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupFacebookLogin() {
         mCallbackManager = CallbackManager.Factory.create();
+    }
+
+    private void setupPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            // no permission! gotta ask
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    Variables.MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case Variables.MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay!
+                } else {
+                    Toast.makeText(this, getString(R.string.permissiondenied_toast), Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
     }
 }

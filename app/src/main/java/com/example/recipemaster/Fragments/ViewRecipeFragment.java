@@ -250,13 +250,8 @@ public class ViewRecipeFragment extends Fragment {
                                     public void onClick(DialogInterface dialog, int which) {
                                         BitmapDrawable drawable = (BitmapDrawable) ((ImageView) view).getDrawable();
                                         Bitmap bitmap = drawable.getBitmap();
-                                        /*
 
-                                        //File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-                                       // File file = new File(path, "pizza" + view.getId() + ".jpg");
 
-                                        MediaStore.Images.Media.insertImage(getContext().getContentResolver(), bitmap, "pizza" + view.getId() + ".jpg", "mhm");
-                                         */
                                         saveImageToExternalStorage(bitmap, view.getId());
                                     }
                                 })

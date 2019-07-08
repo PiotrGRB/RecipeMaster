@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">RecipeMaster</string>
+    <string name="app_name" translatable="false">RecipeMaster</string>
     <string name="recipe">Get the recipe</string>
     <string name="facebook">Login with Facebook</string>
 
-    <string name="facebook_app_id">345877329646692</string>
-    <string name="fb_login_protocol_scheme">fb345877329646692</string>
+    <string name="facebook_app_id" translatable="false">345877329646692</string>
+    <string name="fb_login_protocol_scheme" translatable="false">fb345877329646692</string>
     <string name="fb_loggedOut">Logged out</string>
 
-    <string name="main_title">RecipeMaster</string>
+    <string name="main_title" translatable="false">RecipeMaster</string>
     <string name="ingredients">Ingredients:</string>
     <string name="preparing">Preparing:</string>
     <string name="images">Images:</string>
@@ -19,5 +19,6 @@
     <string name="succes_saveImage">Saved image to gallery!</string>
     <string name="tv_loggedAs">Logged as</string>
     <string name="defaultName">Guest</string>
+    <string name="permissiondenied_toast">Can\'t save photos if you don\'t allow it.</string>
 
 </resources>
